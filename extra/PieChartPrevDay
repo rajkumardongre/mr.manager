@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrevDay Pie Chart</title>
+    <style type="text/css">
+        .chartBox{
+            width: 300px;
+            margin : 150px 170px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+
+<div class ="chartBox">
+    <h1>Previous Day Pie Chart</h1>
+<canvas id="myChart" >
+
+</canvas>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Meeting', 'Work', 'Break'],
+        datasets: [{
+            label: 'Previous Day',
+            data: [12, 19, 3],
+            backgroundColor: [
+                'rgba(255, 190, 11,1)',
+                'rgba(112, 224, 0, 1)',
+                'rgba(193, 18, 31, 1)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+             ],
+            borderWidth: 1
+        }
+    ]
+    },
+    options: {}
+});
+
+
+
+</script>
+
+
+    
+</body>
+</html>
