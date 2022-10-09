@@ -9,6 +9,7 @@ const { requireAuth, checkEmployee, requireAdminAuth } = require('./middleware/a
 
 const authRoutes = require("./route/authRoutes")
 const employeeRoutes = require("./route/Employee.route")
+const adminRoutes = require("./route/Admin.route")
 const taskRoute = require("./route/Task.route")
 
 
@@ -50,6 +51,10 @@ function formatDate(date) {
 }
     
 app.use("/", authRoutes)
-app.use("/admin", requireAdminAuth, employeeRoutes)
+app.use("/admin", requireAdminAuth, adminRoutes)
 app.use("/employee", requireAuth, employeeRoutes)
-app.use("/task", taskRoute)
+app.use("/task", requireAuth, taskRoute)
+
+app.get("/", (req, res) => {
+    res.render("login", {msg:""})
+})

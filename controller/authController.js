@@ -37,8 +37,13 @@ const handleErrors = (err) => {
 
 // create json web token
 const maxAge = 3 * 24 * 60 * 60;
-const createToken = (id) => {
+const createEmployeeToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: maxAge
+  });
+};
+const createAdminToken = (email) => {
+  return jwt.sign({ email }, process.env.JWT_SECRET_KEY, {
     expiresIn: maxAge
   });
 };
@@ -46,7 +51,7 @@ const createToken = (id) => {
 // controller actions
 
 module.exports.login_get = (req, res) => {
-  res.render('login');
+  res.render('login', {msg : ""});
 }
 
 module.exports.login_post = async (req, res) => {
@@ -54,7 +59,8 @@ module.exports.login_post = async (req, res) => {
   if (email == process.env.ADMIN_EMAIL) {
     const auth = password == process.env.ADMIN_PASSWORD
     if (auth) {
-      const token = createToken(email);
+      const token = createAdminToken(email);
+      console.log("token Created")
       res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
       res.redirect("/admin")
     }
@@ -66,10 +72,15 @@ module.exports.login_post = async (req, res) => {
     if (employee == null) {
       res.render("login",{msg : "Invalid Crediential"})
     } else { 
-      const token = createToken(employee._id);
-      res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-      res.redirect("/employee")
-      // res.status(200).json({ employee: employee._id });
+      if (employee.isActive == false) {
+        res.render("login",{msg : "Access Denied"})
+      } else {
+        
+        const token = createEmployeeToken(employee._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.redirect("/employee")
+        // res.status(200).json({ employee: employee._id });
+      }
     }
   } 
   catch (err) {
@@ -82,5 +93,5 @@ module.exports.login_post = async (req, res) => {
 
 module.exports.logout_get = (req, res) => {
   res.cookie('jwt', '', { maxAge: 1 });
-  res.redirect('/');
+  res.redirect('/login');
 }

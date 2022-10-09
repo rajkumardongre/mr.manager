@@ -13,8 +13,8 @@ const requireAdminAuth = (req, res, next) => {
         console.log(err.message);
         res.redirect('/login');
       } else {
-        // console.log(decodedToken);
-        if (decodedToken == process.env.ADMIN_EMAIL) {
+        console.log("decoded Token",decodedToken);
+        if (decodedToken.email == process.env.ADMIN_EMAIL) {
           next();
         } else {
           res.render('login', {msg : "Access Denied"});
@@ -32,41 +32,48 @@ const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
   // check json web token exists & is verified
+  console.log("Checking Token")
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
-        res.redirect('/login');
+        res.render('login', {msg : "Access Denied"});
       } else {
-        // console.log(decodedToken);
-        req.user = decodedToken
-        next();
+        Employee.findById(decodedToken.id, (err, doc) => {
+          if (err || doc == null) {
+            res.render("login", {msg : "Access Denied"})
+          } else {
+            req.EmployeeID = decodedToken.id
+            next();    
+          }
+        })
+        
       }
     });
   } else {
-    res.redirect('/login');
+    res.render('login', {msg : "Access Denied"});
   }
 };
 
 // check current user
-const checkEmployee = (req, res, next) => {
-  const token = req.cookies.jwt;
-  if (token) {
-    jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
-      if (err) {
-        res.locals.employee = null;
-        next();
-      } else {
-        let employee = await Employee.findById(decodedToken.id);
-        res.locals.employee = employee;
-        next();
-      }
-    });
-  } else {
-    res.locals.employee = null;
-    next();
-  }
-};
+// const checkEmployee = (req, res, next) => {
+//   const token = req.cookies.jwt;
+//   if (token) {
+//     jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
+//       if (err) {
+//         res.locals.employee = null;
+//         next();
+//       } else {
+//         let employee = await Employee.findById(decodedToken.id);
+//         res.locals.employee = employee;
+//         next();
+//       }
+//     });
+//   } else {
+//     res.locals.employee = null;
+//     next();
+//   }
+// };
 
 
-module.exports = { requireAuth, checkEmployee, requireAdminAuth };
+module.exports = { requireAuth, requireAdminAuth };

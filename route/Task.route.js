@@ -1,6 +1,7 @@
 // Importing express module
 const express=require("express")
 const router = express.Router()
+const Employee = require("../model/Employee.model")
 
 const taskController = require("../controller/taskController")
 
@@ -8,15 +9,20 @@ const taskController = require("../controller/taskController")
 
 
 // Create a Task
-router.post("/add/:id", taskController.addTask)
+router.post("/add", taskController.addTask)
+router.get("/add", async (req, res) => {
+    const employee = await Employee.findById(req.EmployeeID)
+    if (employee) {
+        // res.send(employee)
+        res.render("employee_addTask", {employee})
+    } else {
+        res.render("employee_addTask", { employee : {} })
+    }
+})
 
-// Read All Employees
-// router.get("/all/employees", employeeController.getAllEmployees)
+// Delete A Task
+router.get("/delete/:id", taskController.removeTask)
 
-// Get Employee With ID
-// router.get("/:id", employeeController.getAllEmployeeWithID)
-
-// router.put("/:id", employeeController.updateEmployeeWithID)
 
 // Importing the router
 module.exports=router

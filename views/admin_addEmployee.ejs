@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr. Manager</title>
+    <!-- bootstrap 5 css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+        integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- custom css -->
+    <link rel="stylesheet" href="/adminAddEmployee.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand d-flex flex-column align-item-start active-nav" id="sidebar">
+        <a href="#" class="navbar-brand text-light mt-5">
+            <div class="display-7 font-weight-bold">Mr. Manager</div>
+        </a>
+        <ul class="navbar-nav d-flex flex-column mt-5 w-100">
+            <li class="nav-item w-100">
+                <a href="/admin" class="nav-link text-light pl-4">Home</a>
+            </li>
+            <li class="nav-item w-100">
+                <a href="/admin/active/employees" class="nav-link text-light pl-4">Active Employees</a>
+            </li>
+            <li class="nav-item w-100">
+                <a href="/admin/deactive/employees" class="nav-link text-light pl-4">Deactive Employees</a>
+            </li>
+            <li class="nav-item w-100">
+                <a href="/admin/add" class="nav-link active text-light pl-4">Add Employee</a>
+            </li>
+            <li class="nav-item w-100">
+                <a href="/logout" class="nav-link text-light pl-4">Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <section class="p-4 my-container active-cont">
+        <br>
+        <h1>Add Employee</h1>
+        <hr>
+        <br>
+
+        <form action="/admin/add" method="post">
+            <% if(msg){ %>
+                <p style="background-color: rgba(255, 0, 0, 0.425);color: white; border-radius: 1rem;padding: 1rem; text-align: center;"><%= msg %></p>    
+            <% } %>
+            <div class="row g-3 align-items-center">
+                <div class="col-2"></div>
+                <div class="col-1">
+                    <label for="emailid" class="col-form-label">Email</label>
+                </div>
+                <div class="col-5">
+                    <input type="email" id="emailid" name="email" required class="form-control">
+                </div>
+                <div class="col-4"></div>
+                <div class="col-2"></div>
+                <div class="col-1">
+                    <label for="name" class="col-form-label">Name</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" id="name" name="name" required class="form-control">
+                </div>
+                <div class="col-4"></div>
+                <div class="col-2"></div>
+                <div class="col-1">
+                    <label for="contact" class="col-form-label">Contact No.</label>
+                </div>
+                <div class="col-5">
+                    <input type="number" id="contact" name="contactNumber" required class="form-control">
+                </div>
+                <div class="col-4"></div>
+                <div class="col-2"></div>
+                <div class="col-1">
+                    <label for="joiningdate" class="col-form-label">Joining Date</label>
+                </div>
+                <div class="col-5">
+                    <input type="date" id="joiningdate" name="joiningDate" required class="form-control">
+                </div>
+                <div class="col-4"></div>
+                <div class="col-2"></div>
+                <div class="col-1">
+                    <label for="department" class="col-form-label">Department</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" id="department" name="department" required class="form-control">
+                </div>
+                <div class="col-4"></div>
+                <div class="col-2"></div>
+                <div class="col-1">
+                    <label for="password" class="col-form-label">Password</label>
+                </div>
+                <div class="col-5">
+                    <input type="password" id="password" name="password" required class="form-control">
+                </div>
+                <div class="col-6"></div>
+                <div class="col-6"></div>
+                <div class="col-2"></div>
+
+                <button class="btn my-4 col-6" id="menu-btn" type="submit">Add Employee</button>
+
+            </div>
+        </form>
+
+
+
+        <!-- bootstrap js -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"
+            integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!-- <h1>This is Employee Page</h1>
+<a
+	href="/task/add"
+	target="_blank"
+	rel="noopener noreferrer"
+	>Add Task</a
+> -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link
+			rel="stylesheet"
+			href="/employeeHomeStyles.css"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+			rel="stylesheet"
+		/>
+		<title>User Home</title>
+	</head>
+
+	<body>
+		<section class="header">
+			<div class="logo">
+				<!-- <i class="ri-menu-line icon icon-0 menu"></i> -->
+				<h2>Mr. <span>Manager</span></h2>
+			</div>
+		</section>
+		<section class="main">
+			<div class="sidebar">
+				<ul class="sidebar--items">
+					<li>
+						<a href="/employee" id="active--link">
+							<span class="icon icon-1"
+								><i
+									class="ri-layout-grid-line"
+								></i
+							></span>
+							<span class="sidebar--item"
+								>Home</span
+							>
+						</a>
+					</li>
+					<li>
+						<a href="/task/add">
+							<span class="icon icon-2"
+								><i class="ri-user-line"></i
+							></span>
+							<span class="sidebar--item"
+								>My Tasks</span
+							>
+						</a>
+					</li>
+					<li>
+						<a href="/employee/graph">
+							<span class="icon icon-3"
+								><i class="ri-user-2-line"></i
+							></span>
+							<span
+								class="sidebar--item"
+								style="white-space: nowrap"
+								>My Graphs</span
+							>
+						</a>
+					</li>
+					<li>
+						<a href="/employee/me">
+							<span class="icon icon-4"
+								><i class="ri-user-line"></i
+							></span>
+							<span class="sidebar--item"
+								>My Profile</span
+							>
+						</a>
+					</li>
+					<li>
+						<a href="/employee/edit">
+							<span class="icon icon-4"
+								><i class="ri-user-line"></i
+							></span>
+							<span class="sidebar--item"
+								>Edit Profile</span
+							>
+						</a>
+					</li>
+				</ul>
+				<ul class="sidebar--bottom-items">
+					<li>
+						<a href="/logout">
+							<span class="icon icon-8"
+								><i
+									class="ri-logout-box-r-line"
+								></i
+							></span>
+							<span class="sidebar--item"
+								>Logout</span
+							>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="main--content">
+				<div class="overview">
+					<div class="title">
+						<h2 class="section--title">
+							<b>My Dashboard</b>
+						</h2>
+					</div>
+					<br /><br />
+
+					<div class="cards">
+						<div class="card card-1">
+							<a href="/task/add">
+								<div class="card--data">
+									<div class="card--content">
+										<h2 class="card--title">
+											My Tasks
+										</h2>
+									</div>
+									<i
+										class="ri-task-line card--icon--lg"
+									></i>
+								</div>
+							</a>
+						</div>
+						<div class="card card-2">
+							<a href="/employee/graph">
+								<div class="card--data">
+									<div class="card--content">
+										<h2 class="card--title">
+											My Charts
+										</h2>
+									</div>
+									<i
+										class="ri-pie-chart-line card--icon--lg"
+									></i>
+								</div>
+							</a>
+						</div>
+						<div class="card card-2">
+							<a href="/employee/me">
+								<div class="card--data">
+									<div class="card--content">
+										<h2 class="card--title">
+											My Profile
+										</h2>
+									</div>
+									<i
+										class="ri-user-line card--icon--lg"
+									></i>
+								</div>
+							</a>
+						</div>
+					</div>
+					<br /><br />
+					<!-- <div class="title">
+						<h2 class="section--title">
+							<b>Today's Overview</b>
+						</h2>
+					</div> -->
+				</div>
+			</div>
+		</section>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

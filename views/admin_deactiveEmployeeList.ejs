@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="/adminHome.css"
+		/>
+		<title>Admin Home</title>
+	</head>
+
+	<body>
+		<section class="header">
+			<div class="logo">
+				<!-- <i class="ri-menu-line icon icon-0 menu"></i> -->
+				<h2>Logo<span>WebName</span></h2>
+			</div>
+		</section>
+		<section class="main">
+			<div class="sidebar">
+				<ul class="sidebar--items">
+					<li>
+						<a href="/admin">
+							<span class="icon icon-1"
+								><i class="ri-user-line"></i
+							></span>
+							<span class="sidebar--item"
+								>Home</span
+							>
+						</a>
+					</li>
+					<li>
+						<a
+							href="/admin/active/employees"
+							
+						>
+							<span class="icon icon-2"
+								><i class="ri-user-line"></i
+							></span>
+							<span
+								class="sidebar-layout-grid-item"
+								>Active Employees</span
+							>
+						</a>
+					</li>
+                    <li>
+						<a
+							href="/admin/deactive/employees"
+							id="active--link"
+						>
+							<span class="icon icon-2"
+								><i class="ri--line"></i
+							></span>
+							<span
+								class="sidebar-layout-grid-item"
+								>Deactive Employees</span
+							>
+						</a>
+					</li>
+					<li>
+						<a href="/admin/add">
+							<span class="icon icon-3"
+								><i class="ri-user-2-line"></i
+							></span>
+							<span
+								class="sidebar--item"
+								style="white-space: nowrap"
+								>Add new Employee</span
+							>
+						</a>
+					</li>
+				</ul>
+				<ul class="sidebar--bottom-items">
+					<li>
+						<a href="/logout">
+							<span class="icon icon-8"
+								><i
+									class="ri-logout-box-r-line"
+								></i
+							></span>
+							<span class="sidebar--item"
+								>Logout</span
+							>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="main--content">
+				<div class="recent--patients">
+					<br />
+					<div class="title">
+						<h2 class="section--title">
+							List of Current Employees
+						</h2>
+						<!-- <button class="add"><i class="ri-add-line"></i>Add Doctor</button> -->
+					</div>
+					<br />
+					<div class="table">
+						<table>
+							<thead>
+								<tr>
+									<th>Email</th>
+									<th>Name</th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+                                <% for(let i=0; i<employees.length; i++ ) {%>
+								<tr>
+									<td><%=employees[i].email%></td>
+									<td><%=employees[i].name%></td>
+									<td>
+										<a href="/admin/employee/<%=employees[i]._id%>">
+										<button class="add">
+											View Profile
+										</button>
+									</a>
+									</td>
+									<!-- <td>
+										<button class="add">
+											Edit Profile
+										</button>
+									</td> -->
+									<td>
+										<a href="/admin/employee/active/<%=employees[i]._id%>" >
+											<button class="add">
+												Activate Account
+
+											</button>
+										</a>
+									</td>
+								</tr>
+                                <% } %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- <script src="assets/js/main.js"></script> -->
+	</body>
+</html>

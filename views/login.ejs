@@ -1,7 +1,99 @@
-<p><%= msg %></p>
-<form action="/login" method="post">
-	<label for="email">Email</label>
-	<input type="text" , name="email" />
-	<label for="password">Password</label>
-	<input type="text" , name="password" />
-</form>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<title>Mr. Manager</title>
+
+		<link
+			rel="stylesheet"
+			href="assets/css/bootstrap.min.css"
+		/>
+
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="assets/css/style.css"
+		/>
+	</head>
+
+	<body class="form-login-body">
+		<form action="/login" method="post">
+			<br />
+			<br />
+			<br />
+			<div class="container-fluid">
+				<div class="login-body container-fluid">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-5">
+								<div class="login-text">
+									<h3><b>Login Here</b></h3>
+									<% if(msg!="") {%>
+									<p
+										style="
+											color: white;
+											padding: 0.5rem 1rem;
+											margin-bottom: 1rem;
+											background-color: rgba(
+												255,
+												0,
+												0,
+												0.478
+											);
+											border-radius: 1rem;
+										"
+									>
+										<%=msg%>
+									</p>
+									<% } %>
+									<input
+										type="text"
+										placeholder="Enter Email"
+										name="email"
+										class="form-control"
+									/>
+
+									<input
+										type="text"
+										placeholder="Enter Password"
+										name="password"
+										class="form-control"
+									/>
+
+									<br />
+									<button
+										class="btn btn-primary"
+										style="
+											background-color: #7952b3;
+										"
+									>
+										Sign In
+									</button>
+								</div>
+							</div>
+							<div class="col-md-7">
+								<div class="login-img">
+									<img
+										src="assets/images/login.png"
+										alt=""
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</body>
+
+	<script src="assets/js/jquery-3.2.1.min.js"></script>
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+	<script src="assets/plugins/slider/js/owl.carousel.min.js"></script>
+	<script src="assets/js/script.js"></script>
+</html>
