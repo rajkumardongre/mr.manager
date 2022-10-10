@@ -309,10 +309,18 @@
         
         <script>
             var ctx = document.getElementById('myChart').getContext('2d');
+            const dateLabel = (date) => {
+                date = new Date(date)
+                return [date.getDate(), date.getMonth()+1, date.getFullYear()].join('/')
+            }
+            var currDate = new Date()
+
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Current Day', 'Previous 1 Day', 'Previous 2 Day', 'Previous 3 Day', 'Previous 4 Day', 'Previous 5 Day','Previous 6 Day'],
+                    labels: [dateLabel(currDate), dateLabel(currDate.setDate(currDate.getDate() - 1)), dateLabel(currDate.setDate(currDate.getDate() - 1)), 
+            dateLabel(currDate.setDate(currDate.getDate() - 1)), dateLabel(currDate.setDate(currDate.getDate() - 1)),
+            dateLabel(currDate.setDate(currDate.getDate() - 1)), dateLabel(currDate.setDate(currDate.getDate() - 1))],
                     datasets: [{
                         label: 'Working',
                         data: [parseInt("<%=last7Days[0].workPercentage%>"), parseInt("<%=last7Days[1].workPercentage%>") ,
