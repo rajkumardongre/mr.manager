@@ -1,9 +1,9 @@
 # E.A.T (Employee Activity Tracker)
 E.A.T is a website specially built for companies to manage and track the activity of their employees. Through this employer can get a visual representation of work done by the employee. There are two modules in the website - one for admin (employer) and the other for employees. 
 
-Employer Side: Employer can access the admin side through the admin details provided to the employer. The employer will create a login account for each employee by simply adding his details. Employee can access the website (employee's side) through these details. Apart from that, employer can see the tasks performed by his employyes and the proportion of time spent in meetings, work, break in a visual manner through pie charts, stacked bar chart, etc.
+Employer Side: Employer can access the admin side through the admin details provided to the employer. The employer will create a login account for each employee by simply adding his details. Employee can access the website (employee's side) through these details. Apart from that, employer can see the tasks performed by his employees and the proportion of time spent in meetings, work, break in a visual manner through pie charts, stacked bar chart, etc.
 
-Employee Side: Employee will login to E.A.T through the credentials provided by the employee. On the website, he will get an option to add tasks with date and time performed. Those added tasks will generate pie charts and graphs for the employee. And the same will also be accesible for the employer. In this way, E.A.T will help employers and employees both to keep a track of their activity.
+Employee Side: Employee will login to E.A.T through the credentials provided by the employee. On the website, he will get an option to add tasks with date and time performed. Those added tasks will generate pie charts and graphs for the employee. And the same will also be accessible for the employer. In this way, E.A.T will help employers and employees both to keep a track of their activity.
 
 # Setup
 
