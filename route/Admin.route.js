@@ -30,11 +30,10 @@ router.put("/employee/:id", adminController.updateEmployeeWithID)
 router.get("/employee/deactive/:id", adminController.deactivateEmployeeWithID)
 router.get("/employee/active/:id", adminController.activateEmployeeWithID)
 
-router.get("/", (req, res) => {
-    res.render("admin_home")
-})
+router.get("/", adminController.adminHome)
 
-
+router.post("/active", adminController.findActiveEmployeeWithName)
+router.post("/deactive", adminController.findDeactiveEmployeeWithName)
 
 
 // Importing the router
