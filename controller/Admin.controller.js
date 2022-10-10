@@ -12,12 +12,31 @@ function formatDate(date) {
         day = '0' + day;
     // console.log(year)
     return [year, month, day].join('-');
-  }
+}
+
+const adminHome = (req, res, next) => {
+    Employee.find({}).exec((err, docs) => {
+        if (err) {
+            console.log(err)
+            res.redirect("/login")
+        } else {
+            console.log(docs)
+            let activeEmployee = 0
+            let deactiveEmployee = 0
+            for (let i = 0; i < docs.length; i++){
+                if (docs[i].isActive) {
+                    activeEmployee++
+                } else {
+                    deactiveEmployee++
+                }
+            }
+            res.render("admin_home", { activeEmployee, deactiveEmployee})
+        }
+    });
+}
 
 const addEmployee = (req, res, next) => {
 	
-
-
     Employee.init().then(() => {
         // safe to create users now.
         var new_employee = new Employee({
@@ -80,7 +99,45 @@ const getDeactiveEmployees = async (req, res, next) => {
     });
 }
 
+const findActiveEmployeeWithName = (req, res, next) => {
+    const filter = {
+        'isActive': {
+            $eq: true
+        }
+    }
+    const nameQuery = req.body.name;
+    Employee.find({ name: { $regex: nameQuery, $options: '$i' } }).where(filter).exec((err, docs) => {
+        if (err) {
+            console.log(err)
+            // res.send(err)
+            res.redirect("/login")
+        } else {
+            console.log(docs)
+            res.render("admin_activeEmployeeList", {employees : docs})
+            // res.json(docs)
+        }
+    });
+}
 
+const findDeactiveEmployeeWithName = (req, res, next) => {
+    const filter = {
+        'isActive': {
+            $eq: false
+        }
+    }
+    const nameQuery = req.body.name;
+    Employee.find({ name: { $regex: nameQuery, $options: "$i" } }).where(filter).exec((err, docs) => {
+        if (err) {
+            console.log(err)
+            // res.send(err)
+            res.redirect("/login")
+        } else {
+            console.log(docs)
+            res.render("admin_deactiveEmployeeList", {employees : docs})
+            // res.json(docs)
+        }
+    });
+}
 
 
 const updateEmployeeWithID = (req, res, next) => {
@@ -312,5 +369,8 @@ module.exports = {
     deactivateEmployeeWithID,
     getEmployeeWithIDpost,
     activateEmployeeWithID,
-    updateEmployeeWithID
+    updateEmployeeWithID,
+    adminHome,
+    findActiveEmployeeWithName,
+    findDeactiveEmployeeWithName
 }

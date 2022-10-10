@@ -140,22 +140,22 @@ const employeeGraph = async (req, res, next) => {
     console.log(currentDayAnalysis)
     console.log(prevDayAnalysis)
     console.log(last7Days)
-    res.render("employee_graph", {currentDayAnalysis, prevDayAnalysis, last7Days})
+    res.render("employee_graph", {currentDayAnalysis, prevDayAnalysis, last7Days, searchByDateAnalysis:null, searchDate:null})
 
 }
 
 const employeeGraphPost = async (req, res, next) => {
     const currDay = new Date(req.body.date)
-
-    const currentDayAnalysis = await analysisOf1Day(req.EmployeeID, currDay)
-    let prevDate = currDay
+    const searchByDateAnalysis = await analysisOf1Day(req.EmployeeID, currDay)
+    const currentDayAnalysis = await analysisOf1Day(req.EmployeeID, new Date())
+    let prevDate = new Date()
     prevDate.setDate(prevDate.getDate() - 1)
     const prevDayAnalysis = await analysisOf1Day(req.EmployeeID, prevDate)
     const last7Days = await last7DaysAnalysis(req.EmployeeID)
     console.log(currentDayAnalysis)
     console.log(prevDayAnalysis)
     console.log(last7Days)
-    res.render("employee_graph", {currentDayAnalysis, prevDayAnalysis, last7Days})
+    res.render("employee_graph", {currentDayAnalysis, prevDayAnalysis, last7Days, searchByDateAnalysis, searchDate: currDay})
 
 }
 
