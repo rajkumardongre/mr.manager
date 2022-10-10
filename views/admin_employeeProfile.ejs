@@ -209,7 +209,12 @@
             <div class="date">
                 <label for="dat">Select Date : </label>
                 <input type="date" id="dat" name="date">
-                <button type="submit">Show</button>
+                <button type="submit" >Show</button>
+                <br>
+						
+						<!-- <input type="text" name="name" class="form-control">
+						<button type="submit">Find</button> -->
+						
                 <% if(searchDate != null) { %>
                     <p style="padding: 1rem;font-weight: bold;"> <%=searchDate.toDateString()%> </p>
                 <% } %>
