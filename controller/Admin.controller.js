@@ -331,7 +331,7 @@ const getEmployeeWithID = async (req, res, next) => {
         console.log(prevDayAnalysis)
         console.log(last7Days)
         // res.send(employee)
-        res.render("admin_employeeProfile", {employee, currentDayAnalysis, prevDayAnalysis, last7Days})
+        res.render("admin_employeeProfile", {employee, currentDayAnalysis, prevDayAnalysis, last7Days, searchByDateAnalysis:null, searchDate : null})
     } else {
         // res.send({})
         res.redirect("/login")
@@ -341,24 +341,22 @@ const getEmployeeWithID = async (req, res, next) => {
 const getEmployeeWithIDpost = async (req, res, next) => {
     const employee = await Employee.findById(req.params.id)
     if (employee) {
-        let currDay = new Date()
-        if (req.body.date != null) {
-            currDay = new Date(req.body.date)
-        }
-        const currentDayAnalysis = await analysisOf1Day(employee._id, currDay)
-        let prevDate = currDay
+        const currDay = new Date(req.body.date)
+        const searchByDateAnalysis = await analysisOf1Day(req.params.id, currDay)
+        const currentDayAnalysis = await analysisOf1Day(req.params.id, new Date())
+        let prevDate = new Date()
         prevDate.setDate(prevDate.getDate() - 1)
-        const prevDayAnalysis = await analysisOf1Day(employee._id, prevDate)
-        const last7Days = await last7DaysAnalysis(employee._id)
+        const prevDayAnalysis = await analysisOf1Day(req.params.id, prevDate)
+        const last7Days = await last7DaysAnalysis(req.params.id)
         console.log(currentDayAnalysis)
         console.log(prevDayAnalysis)
         console.log(last7Days)
-        // res.send(employee)
-        res.render("admin_employeeProfile", {employee, currentDayAnalysis, prevDayAnalysis, last7Days})
+        res.render("admin_employeeProfile", {employee, currentDayAnalysis, prevDayAnalysis, last7Days, searchByDateAnalysis, searchDate: currDay})   
     } else {
-        // res.send({})
         res.redirect("/login")
     }
+    
+
 }
 
 module.exports = {
